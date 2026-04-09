@@ -1,0 +1,13 @@
+{
+  "classification": {
+    "accuracy": 0.8855,
+    "f1": 0.7844,
+    "roc_auc": 0.9632,
+    "avg_precision": 0.8705
+  },
+  "regression": {
+    "rmse_all": 4.1687,
+    "mae_all": 1.7018,
+    "r2_all": 0.6276
+  }
+}
