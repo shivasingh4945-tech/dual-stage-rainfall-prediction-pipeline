@@ -103,7 +103,7 @@ def merge_datasets(era5, nasa, coords):
     if missing_lat > 0:
         log.warning(f"  {missing_lat} rows missing latitude after coord join!")
     else:
-        log.info("  All districts matched coordinates ✅")
+        log.info("  All districts matched coordinates ")
 
     return merged
 
@@ -113,15 +113,15 @@ def quality_checks(df):
     log.info("Running data quality checks...")
     null_counts = df.isnull().sum()
     if null_counts.sum() == 0:
-        log.info("  ✅ Zero missing values")
+        log.info("Zero missing values")
     else:
-        log.warning(f"  ⚠️  Missing values:\n{null_counts[null_counts > 0]}")
+        log.warning(f"Missing values:\n{null_counts[null_counts > 0]}")
 
     dups = df.duplicated(subset=["district", "date"]).sum()
     if dups == 0:
-        log.info("  ✅ Zero duplicate district+date combinations")
+        log.info("Zero duplicate district+date combinations")
     else:
-        log.warning(f"  ⚠️  {dups} duplicate district+date rows found!")
+        log.warning(f"{dups} duplicate district+date rows found!")
 
     log.info(f"  Districts: {df['district'].nunique()}")
     log.info(f"  Date range: {df['date'].min().date()} → {df['date'].max().date()}")
@@ -198,7 +198,7 @@ def run_preprocessing(config_path="configs/config.yaml"):
     train, val, test = temporal_split(merged, cfg)
     save_outputs(merged, train, val, test, cfg)
 
-    log.info("✅ Preprocessing complete.")
+    log.info("Preprocessing complete.")
     return merged, train, val, test
 
 

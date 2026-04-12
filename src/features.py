@@ -47,7 +47,7 @@ def add_temporal_features(df):
     season_order = {"Winter": 0, "Pre_Monsoon": 1, "Monsoon": 2, "Post_Monsoon": 3}
     df["season_encoded"] = df["season"].map(season_order)
 
-    log.info("  ✅ Temporal features added (month_sin/cos, season, day_of_year)")
+    log.info("Temporal features added (month_sin/cos, season, day_of_year)")
     return df
 
 
@@ -75,7 +75,7 @@ def add_wind_features(df):
             df[f"{col.lower()}_sin"] = np.sin(rad)
             df[f"{col.lower()}_cos"] = np.cos(rad)
 
-    log.info("  ✅ Wind features added (wind_speed_10m, wind_dir_sin/cos, wd10m/50m_sin/cos)")
+    log.info("Wind features added (wind_speed_10m, wind_dir_sin/cos, wd10m/50m_sin/cos)")
     return df
 
 
@@ -95,7 +95,7 @@ def add_thermo_features(df):
     if "RH2M" in df.columns and "tdd" in df.columns:
         df["humidity_stress"] = df["RH2M"] / (df["tdd"].clip(lower=0.1))
 
-    log.info("  ✅ Thermodynamic features added (tdd, humidity_stress)")
+    log.info("Thermodynamic features added (tdd, humidity_stress)")
     return df
 
 
@@ -137,7 +137,7 @@ def add_lag_features(df):
         df["rain_streak"] = 0
 
     n_lag_nulls = df[["precip_lag_1d","precip_lag_7d","precip_roll_7d"]].isnull().sum().sum()
-    log.info(f"  ✅ Lag & rolling features added — {n_lag_nulls:,} NaNs at series start (will be dropped)")
+    log.info(f"Lag & rolling features added — {n_lag_nulls:,} NaNs at series start (will be dropped)")
     return df
 
 
