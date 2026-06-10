@@ -85,6 +85,27 @@ jupyter lab
 
 ---
 
+## Docker
+
+Build the image and run the full pipeline:
+
+```bash
+docker compose up --build
+```
+
+Run only selected stages:
+
+```bash
+docker compose run --rm rainfall-pipeline preprocess classifier
+docker compose run --rm rainfall-pipeline evaluate
+```
+
+The container uses `run_pipeline.py` as its entrypoint, so stage names passed after the
+service name are forwarded directly to the pipeline runner. `configs/`, `data/`,
+`models/`, and `outputs/` are mounted from the host machine.
+
+---
+
 ## Dataset Summary
 
 | Dataset | Rows | Columns | Key Contents |

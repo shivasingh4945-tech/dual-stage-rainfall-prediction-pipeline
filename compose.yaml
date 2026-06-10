@@ -1,0 +1,11 @@
+services:
+  rainfall-pipeline:
+    build:
+      context: .
+    image: rainfall-pipeline:latest
+    volumes:
+      - ./configs:/app/configs:ro
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./outputs:/app/outputs
+    command: ["all"]
